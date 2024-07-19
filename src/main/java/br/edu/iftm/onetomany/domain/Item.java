@@ -1,24 +1,22 @@
 package br.edu.iftm.onetomany.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
 @Entity
-public class Item {
+public class PostComment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String review;
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        Long id;
-        String nome;
-
-        @JsonIgnore
-        @ManyToOne
-        Categoria categoria;
+    @ManyToOne
+    @JoinColumn(name="post_id")
+    private Post post;
 }
